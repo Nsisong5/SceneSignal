@@ -1,0 +1,27 @@
+{
+  "contract_version": "1.0",
+  "plan_id": "plan-crossfade-2",
+  "assets": [
+    {"asset_id": "asset-a", "asset_ref": {"scheme": "file", "uri": "clip_5s_landscape_audio.mp4", "checksum": null}},
+    {"asset_id": "asset-b", "asset_ref": {"scheme": "file", "uri": "clip_30s_continuous.mp4", "checksum": null}}
+  ],
+  "output_profile": {
+    "container": "mp4",
+    "video_codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "fit": "letterbox",
+    "audio": null
+  },
+  "timeline": {
+    "segments": [
+      {"segment_id": "seg-1", "asset_id": "asset-a", "source_start_seconds": 0.0, "source_end_seconds": 5.0, "audio_mode": "mute"},
+      {"segment_id": "seg-2", "asset_id": "asset-b", "source_start_seconds": 0.0, "source_end_seconds": 5.0, "audio_mode": "mute"}
+    ],
+    "transitions": [
+      {"transition_id": "trans-1", "type": "crossfade", "from_segment_id": "seg-1", "to_segment_id": "seg-2", "duration_seconds": 1.0}
+    ]
+  },
+  "expected_duration_seconds": 9.0
+}

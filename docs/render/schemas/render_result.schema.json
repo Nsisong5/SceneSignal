@@ -1,0 +1,400 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "checksum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checksum"
+        },
+        "scheme": {
+          "default": "file",
+          "title": "Scheme",
+          "type": "string"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "ErrorInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": true,
+          "default": {},
+          "title": "Details",
+          "type": "object"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "phase": {
+          "title": "Phase",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable",
+        "phase"
+      ],
+      "title": "ErrorInfo",
+      "type": "object"
+    },
+    "ExpectedMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_fraction": {
+          "title": "Duration Fraction",
+          "type": "string"
+        },
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Duration Seconds"
+        },
+        "frame_count": {
+          "title": "Frame Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "duration_seconds",
+        "duration_fraction",
+        "frame_count"
+      ],
+      "title": "ExpectedMetadata",
+      "type": "object"
+    },
+    "OutputMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_codec": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "container": {
+          "title": "Container",
+          "type": "string"
+        },
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Duration Seconds"
+        },
+        "file_size_bytes": {
+          "title": "File Size Bytes",
+          "type": "integer"
+        },
+        "frame_count": {
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "frame_rate": {
+          "title": "Frame Rate",
+          "type": "string"
+        },
+        "has_audio": {
+          "title": "Has Audio",
+          "type": "boolean"
+        },
+        "has_video": {
+          "title": "Has Video",
+          "type": "boolean"
+        },
+        "height": {
+          "title": "Height",
+          "type": "integer"
+        },
+        "ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "video_codec": {
+          "title": "Video Codec",
+          "type": "string"
+        },
+        "width": {
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ref",
+        "container",
+        "video_codec",
+        "duration_seconds",
+        "width",
+        "height",
+        "frame_rate",
+        "frame_count",
+        "has_video",
+        "has_audio",
+        "file_size_bytes"
+      ],
+      "title": "OutputMetadata",
+      "type": "object"
+    },
+    "PostconditionCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "check": {
+          "title": "Check",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "check",
+        "status",
+        "detail"
+      ],
+      "title": "PostconditionCheck",
+      "type": "object"
+    },
+    "RendererMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "encoder_settings": {
+          "additionalProperties": true,
+          "title": "Encoder Settings",
+          "type": "object"
+        },
+        "ffmpeg_version": {
+          "title": "Ffmpeg Version",
+          "type": "string"
+        },
+        "ffprobe_version": {
+          "title": "Ffprobe Version",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "ffmpeg_version",
+        "ffprobe_version",
+        "encoder_settings"
+      ],
+      "title": "RendererMetadata",
+      "type": "object"
+    },
+    "TimingMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "completed_at": {
+          "title": "Completed At",
+          "type": "string"
+        },
+        "elapsed_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Elapsed Seconds"
+        },
+        "started_at": {
+          "title": "Started At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "started_at",
+        "completed_at",
+        "elapsed_seconds"
+      ],
+      "title": "TimingMetadata",
+      "type": "object"
+    },
+    "WarningItem": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "phase": {
+          "title": "Phase",
+          "type": "string"
+        },
+        "related_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Related Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "phase"
+      ],
+      "title": "WarningItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ErrorInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "expected": {
+      "$ref": "#/$defs/ExpectedMetadata"
+    },
+    "manifest_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "output": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/OutputMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "plan_id": {
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "postconditions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PostconditionCheck"
+      },
+      "title": "Postconditions",
+      "type": "array"
+    },
+    "render_job_id": {
+      "title": "Render Job Id",
+      "type": "string"
+    },
+    "renderer": {
+      "$ref": "#/$defs/RendererMetadata"
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "cancelled"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "timing": {
+      "$ref": "#/$defs/TimingMetadata"
+    },
+    "warnings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WarningItem"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "render_job_id",
+    "plan_id",
+    "status",
+    "expected",
+    "timing",
+    "renderer",
+    "manifest_ref"
+  ],
+  "title": "RenderResult",
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "contract_version": "1.0",
+  "job_id": "extract-bad",
+  "asset_id": "asset-bad",
+  "source_kind": "invalid_kind",
+  "asset_ref": {"scheme": "file", "uri": "clip.mp4"},
+  "extraction_profile": "standard"
+}

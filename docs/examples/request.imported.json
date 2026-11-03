@@ -1,0 +1,9 @@
+{
+  "contract_version": "1.0",
+  "job_id": "import-0001",
+  "asset_id": "asset-0009",
+  "source_kind": "imported",
+  "asset_ref": {"scheme": "file", "uri": "clip_5s_matroska.mkv", "checksum": null},
+  "extraction_profile": "quick",
+  "language": "en"
+}

@@ -1,0 +1,8 @@
+{
+  "contract_version": "1.0",
+  "job_id": "extract-001",
+  "asset_id": "asset-001",
+  "source_kind": "generated",
+  "asset_ref": {"scheme": "file", "uri": "clip_5s_landscape_audio.mp4", "checksum": null},
+  "extraction_profile": "standard"
+}

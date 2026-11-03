@@ -1,0 +1,22 @@
+{
+  "contract_version": "1.0",
+  "plan_id": "plan-invalid-001",
+  "assets": [
+    {"asset_id": "asset-a", "asset_ref": {"scheme": "file", "uri": "clip_a.mp4"}}
+  ],
+  "output_profile": {
+    "container": "mp4",
+    "video_codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "fit": "letterbox",
+    "audio": null
+  },
+  "timeline": {
+    "segments": [
+      {"segment_id": "seg-1", "asset_id": "asset-a", "source_start_seconds": 5.0, "source_end_seconds": 3.0, "audio_mode": "mute"}
+    ],
+    "transitions": []
+  }
+}

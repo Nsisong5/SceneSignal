@@ -1,0 +1,23 @@
+{
+  "contract_version": "1.0",
+  "plan_id": "plan-all-mute",
+  "assets": [
+    {"asset_id": "asset-a", "asset_ref": {"scheme": "file", "uri": "clip_5s_landscape_audio.mp4", "checksum": null}}
+  ],
+  "output_profile": {
+    "container": "mp4",
+    "video_codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "fit": "letterbox",
+    "audio": {"codec": "aac", "sample_rate": 48000, "channels": 2}
+  },
+  "timeline": {
+    "segments": [
+      {"segment_id": "seg-1", "asset_id": "asset-a", "source_start_seconds": 0.0, "source_end_seconds": 3.0, "audio_mode": "mute"}
+    ],
+    "transitions": []
+  },
+  "expected_duration_seconds": 3.0
+}

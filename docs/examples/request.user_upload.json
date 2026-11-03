@@ -1,0 +1,8 @@
+{
+  "contract_version": "1.0",
+  "job_id": "upload-0001",
+  "asset_id": "asset-0008",
+  "source_kind": "user_upload",
+  "asset_ref": {"scheme": "file", "uri": "clip_5s_landscape_audio.mp4", "checksum": null},
+  "extraction_profile": "standard"
+}

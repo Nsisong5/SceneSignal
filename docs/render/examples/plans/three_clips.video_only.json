@@ -1,0 +1,29 @@
+{
+  "contract_version": "1.0",
+  "plan_id": "plan-example-001",
+  "production_id": "production-example-001",
+  "assets": [
+    {"asset_id": "asset-a", "asset_ref": {"scheme": "file", "uri": "clip_a_8s_640x360_24.mp4", "checksum": null}},
+    {"asset_id": "asset-b", "asset_ref": {"scheme": "file", "uri": "clip_b_8s_640x360_24.mp4", "checksum": null}},
+    {"asset_id": "asset-c", "asset_ref": {"scheme": "file", "uri": "clip_c_8s_640x360_24.mp4", "checksum": null}}
+  ],
+  "output_profile": {
+    "name": "mp4-h264-720p30",
+    "container": "mp4",
+    "video_codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "fit": "letterbox",
+    "audio": null
+  },
+  "timeline": {
+    "segments": [
+      {"segment_id": "segment-001", "asset_id": "asset-a", "source_start_seconds": 2.0, "source_end_seconds": 6.0, "audio_mode": "mute"},
+      {"segment_id": "segment-002", "asset_id": "asset-b", "source_start_seconds": 4.0, "source_end_seconds": 8.0, "audio_mode": "mute"},
+      {"segment_id": "segment-003", "asset_id": "asset-c", "source_start_seconds": 1.0, "source_end_seconds": 5.0, "audio_mode": "mute"}
+    ],
+    "transitions": []
+  },
+  "expected_duration_seconds": 12.0
+}

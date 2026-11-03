@@ -1,0 +1,328 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "checksum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checksum"
+        },
+        "scheme": {
+          "default": "file",
+          "title": "Scheme",
+          "type": "string"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "AudioProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "channels": {
+          "default": 2,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "codec": {
+          "default": "aac",
+          "title": "Codec",
+          "type": "string"
+        },
+        "sample_rate": {
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        }
+      },
+      "title": "AudioProfile",
+      "type": "object"
+    },
+    "OutputProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "audio": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AudioProfile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "container": {
+          "const": "mp4",
+          "default": "mp4",
+          "title": "Container",
+          "type": "string"
+        },
+        "fit": {
+          "enum": [
+            "letterbox",
+            "crop"
+          ],
+          "title": "Fit",
+          "type": "string"
+        },
+        "fps": {
+          "description": "Exact rational frame rate (e.g. 30 or 30000/1001)",
+          "title": "Fps",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "height": {
+          "title": "Height",
+          "type": "integer"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "video_codec": {
+          "const": "h264",
+          "default": "h264",
+          "title": "Video Codec",
+          "type": "string"
+        },
+        "width": {
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "fps",
+        "fit"
+      ],
+      "title": "OutputProfile",
+      "type": "object"
+    },
+    "PlanAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "asset_ref": {
+          "$ref": "#/$defs/AssetRef"
+        }
+      },
+      "required": [
+        "asset_id",
+        "asset_ref"
+      ],
+      "title": "PlanAsset",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "audio_mode": {
+          "enum": [
+            "source",
+            "mute"
+          ],
+          "title": "Audio Mode",
+          "type": "string"
+        },
+        "segment_id": {
+          "title": "Segment Id",
+          "type": "string"
+        },
+        "source_end_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Source End Seconds"
+        },
+        "source_start_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Source Start Seconds"
+        }
+      },
+      "required": [
+        "segment_id",
+        "asset_id",
+        "source_start_seconds",
+        "source_end_seconds",
+        "audio_mode"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Timeline": {
+      "additionalProperties": false,
+      "properties": {
+        "segments": {
+          "items": {
+            "$ref": "#/$defs/Segment"
+          },
+          "minItems": 1,
+          "title": "Segments",
+          "type": "array"
+        },
+        "transitions": {
+          "items": {
+            "$ref": "#/$defs/Transition"
+          },
+          "title": "Transitions",
+          "type": "array"
+        }
+      },
+      "title": "Timeline",
+      "type": "object"
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Duration Seconds"
+        },
+        "from_segment_id": {
+          "title": "From Segment Id",
+          "type": "string"
+        },
+        "to_segment_id": {
+          "title": "To Segment Id",
+          "type": "string"
+        },
+        "transition_id": {
+          "title": "Transition Id",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "transition_id",
+        "type",
+        "from_segment_id",
+        "to_segment_id",
+        "duration_seconds"
+      ],
+      "title": "Transition",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/PlanAsset"
+      },
+      "minItems": 1,
+      "title": "Assets",
+      "type": "array"
+    },
+    "contract_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "expected_duration_seconds": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Duration Seconds"
+    },
+    "output_profile": {
+      "$ref": "#/$defs/OutputProfile"
+    },
+    "plan_id": {
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "production_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Production Id"
+    },
+    "timeline": {
+      "$ref": "#/$defs/Timeline"
+    }
+  },
+  "required": [
+    "plan_id",
+    "output_profile",
+    "timeline"
+  ],
+  "title": "EditPlan",
+  "type": "object"
+}

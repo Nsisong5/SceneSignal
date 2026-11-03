@@ -1,0 +1,20 @@
+{
+  "contract_version": "1.0",
+  "job_id": "extract-002",
+  "asset_id": "asset-002",
+  "source_kind": "user_upload",
+  "asset_ref": {"scheme": "file", "uri": "multishot_12s.mp4", "checksum": null},
+  "extraction_profile": "thorough",
+  "production_id": "production-001",
+  "scene_id": "scene-003",
+  "order_index": 3,
+  "source_prompt": "A hiker walking through a misty forest",
+  "global_prompt": null,
+  "channel_context": null,
+  "language": "en",
+  "transcript_ref": null,
+  "related_assets": [],
+  "requested_capabilities": ["visual_observations", "temporal_events", "shot_detection", "camera_analysis"],
+  "provider_config_ref": null,
+  "correlation_id": "corr-77"
+}

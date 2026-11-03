@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "outcome": "complete",
+  "job": {
+    "job_id": "extract-001",
+    "asset_id": "asset-001",
+    "source_kind": "generated",
+    "extraction_profile": "standard"
+  },
+  "asset_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "checksum_status": "not_supplied",
+  "media": {
+    "duration_seconds": 5.0,
+    "width": 1280,
+    "height": 720,
+    "display_width": 1280,
+    "display_height": 720,
+    "rotation_degrees": 0,
+    "has_video": true,
+    "has_audio": false,
+    "frame_rate_mode": "constant",
+    "video_codec": "h264",
+    "container_format": "mp4",
+    "file_size_bytes": 123456
+  },
+  "timeline": {
+    "unit": "seconds",
+    "interval_convention": "[start,end)",
+    "precision_decimals": 6,
+    "timeline_kind": "source_media",
+    "origin": "first_video_frame",
+    "start_time_offset_seconds": 0.0
+  },
+  "shots": [
+    {
+      "id": "shot-001",
+      "start_seconds": 0.0,
+      "end_seconds": 5.0,
+      "segment_kind": "content",
+      "boundary_method": "initial_segment",
+      "boundary_kind": "asset_start",
+      "analysis_status": "analyzed",
+      "frame_ids": [],
+      "observation_ids": [],
+      "event_ids": ["event-001"]
+    }
+  ],
+  "events": [
+    {
+      "id": "event-001",
+      "type": "movement",
+      "description": "Invalid event with multi_sample_span and start_seconds set.",
+      "shot_id": "shot-001",
+      "evidence_span": {"first_seconds": 0.0, "last_seconds": 2.0},
+      "start_seconds": 0.0,
+      "end_seconds": 2.0,
+      "temporal_precision": "multi_sample_span",
+      "evidence_type": "inference"
+    }
+  ],
+  "provenance": {
+    "job_id": "extract-001",
+    "asset_id": "asset-001",
+    "asset_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "contract_version": "1.0",
+    "schema_version": "1.0",
+    "extraction_profile": "standard",
+    "request_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "sampling_strategy_version": "1.0",
+    "sampling_parameters": {},
+    "media_probe": {"name": "ffprobe", "version": "6.0"},
+    "frame_extractor": {"name": "ffmpeg", "version": "6.0"},
+    "shot_detector": {"name": "ffmpeg_scene", "version": "1.0", "parameters": {}},
+    "started_at": "2026-10-12T00:00:00Z",
+    "completed_at": "2026-10-12T00:00:01Z",
+    "stage_attempts": {},
+    "warning_count": 0
+  }
+}

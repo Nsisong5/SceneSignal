@@ -1,0 +1,1244 @@
+{
+  "$defs": {
+    "CapabilityReport": {
+      "additionalProperties": false,
+      "properties": {
+        "analysis_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "still_frames",
+                "frame_sequence",
+                "video_clip",
+                "deterministic"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Analysis Mode"
+        },
+        "capability": {
+          "title": "Capability",
+          "type": "string"
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error Code"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "requested": {
+          "title": "Requested",
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "partial",
+            "unsupported",
+            "failed",
+            "not_requested"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "capability",
+        "requested",
+        "status"
+      ],
+      "title": "CapabilityReport",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "attributes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Attributes",
+          "type": "array"
+        },
+        "first_observed_seconds": {
+          "minimum": 0.0,
+          "title": "First Observed Seconds",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "identity_notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Identity Notes"
+        },
+        "identity_scope": {
+          "enum": [
+            "frame",
+            "shot",
+            "asset"
+          ],
+          "title": "Identity Scope",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "last_observed_seconds": {
+          "minimum": 0.0,
+          "title": "Last Observed Seconds",
+          "type": "number"
+        },
+        "observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Observation Ids",
+          "type": "array"
+        },
+        "shot_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Shot Ids",
+          "type": "array"
+        },
+        "tracking_method": {
+          "enum": [
+            "none",
+            "provider_local_grouping"
+          ],
+          "title": "Tracking Method",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "person",
+            "animal",
+            "object",
+            "vehicle",
+            "text_element",
+            "place",
+            "other"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "label",
+        "identity_scope",
+        "tracking_method",
+        "first_observed_seconds",
+        "last_observed_seconds"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "Event": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "confidence_source": {
+          "anyOf": [
+            {
+              "enum": [
+                "model_self_reported",
+                "detector_score",
+                "heuristic"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence Source"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "end_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Seconds"
+        },
+        "entity_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Entity Ids",
+          "type": "array"
+        },
+        "evidence_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Observation Ids",
+          "type": "array"
+        },
+        "evidence_span": {
+          "$ref": "#/$defs/EvidenceSpan"
+        },
+        "evidence_type": {
+          "enum": [
+            "direct_observation",
+            "inference"
+          ],
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "shot_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Shot Id",
+          "type": "string"
+        },
+        "start_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Seconds"
+        },
+        "temporal_precision": {
+          "enum": [
+            "single_sample_only",
+            "multi_sample_span",
+            "adapter_reported_interval",
+            "frame_accurate"
+          ],
+          "title": "Temporal Precision",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "movement",
+            "interaction",
+            "appearance",
+            "disappearance",
+            "state_change",
+            "transition",
+            "other"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "description",
+        "shot_id",
+        "evidence_span",
+        "temporal_precision",
+        "evidence_type"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "first_seconds": {
+          "minimum": 0.0,
+          "title": "First Seconds",
+          "type": "number"
+        },
+        "last_seconds": {
+          "minimum": 0.0,
+          "title": "Last Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "first_seconds",
+        "last_seconds"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    },
+    "FrameRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artifact Ref"
+        },
+        "frame_index": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Frame Index"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pts": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pts"
+        },
+        "requested_timestamp_seconds": {
+          "minimum": 0.0,
+          "title": "Requested Timestamp Seconds",
+          "type": "number"
+        },
+        "sampling_reason": {
+          "enum": [
+            "shot_bin",
+            "min_total_fill"
+          ],
+          "title": "Sampling Reason",
+          "type": "string"
+        },
+        "shot_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Shot Id",
+          "type": "string"
+        },
+        "time_base": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Base"
+        },
+        "timestamp_seconds": {
+          "minimum": 0.0,
+          "title": "Timestamp Seconds",
+          "type": "number"
+        },
+        "timestamp_source": {
+          "enum": [
+            "decoded_pts",
+            "requested_unverified"
+          ],
+          "title": "Timestamp Source",
+          "type": "string"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "timestamp_seconds",
+        "requested_timestamp_seconds",
+        "timestamp_source",
+        "shot_id",
+        "sampling_reason",
+        "width",
+        "height"
+      ],
+      "title": "FrameRecord",
+      "type": "object"
+    },
+    "MediaMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_codec": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "container_duration_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Container Duration Seconds"
+        },
+        "container_format": {
+          "title": "Container Format",
+          "type": "string"
+        },
+        "display_height": {
+          "exclusiveMinimum": 0,
+          "title": "Display Height",
+          "type": "integer"
+        },
+        "display_width": {
+          "exclusiveMinimum": 0,
+          "title": "Display Width",
+          "type": "integer"
+        },
+        "duration_seconds": {
+          "exclusiveMinimum": 0.0,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "file_size_bytes": {
+          "minimum": 0,
+          "title": "File Size Bytes",
+          "type": "integer"
+        },
+        "frame_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Frame Count"
+        },
+        "frame_rate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Frame Rate"
+        },
+        "frame_rate_mode": {
+          "enum": [
+            "constant",
+            "variable",
+            "unknown"
+          ],
+          "title": "Frame Rate Mode",
+          "type": "string"
+        },
+        "has_audio": {
+          "title": "Has Audio",
+          "type": "boolean"
+        },
+        "has_video": {
+          "const": true,
+          "title": "Has Video",
+          "type": "boolean"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "pixel_aspect_ratio": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pixel Aspect Ratio"
+        },
+        "rotation_degrees": {
+          "enum": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "title": "Rotation Degrees",
+          "type": "integer"
+        },
+        "video_codec": {
+          "title": "Video Codec",
+          "type": "string"
+        },
+        "video_time_base": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Video Time Base"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "duration_seconds",
+        "width",
+        "height",
+        "display_width",
+        "display_height",
+        "rotation_degrees",
+        "has_video",
+        "has_audio",
+        "frame_rate_mode",
+        "video_codec",
+        "container_format",
+        "file_size_bytes"
+      ],
+      "title": "MediaMetadata",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "object_presence",
+            "action",
+            "environment",
+            "composition",
+            "lighting",
+            "style",
+            "shot_size",
+            "camera_angle",
+            "camera_movement",
+            "subject_movement",
+            "visible_text",
+            "visual_transition",
+            "other"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "confidence_source": {
+          "anyOf": [
+            {
+              "enum": [
+                "model_self_reported",
+                "detector_score",
+                "heuristic"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence Source"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "end_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Seconds"
+        },
+        "entity_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Entity Ids",
+          "type": "array"
+        },
+        "evidence_frame_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Frame Ids",
+          "type": "array"
+        },
+        "evidence_type": {
+          "enum": [
+            "direct_observation",
+            "inference"
+          ],
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "scope": {
+          "enum": [
+            "frame",
+            "shot",
+            "span"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "shot_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Shot Id",
+          "type": "string"
+        },
+        "start_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Seconds"
+        },
+        "timestamp_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timestamp Seconds"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "scope",
+        "shot_id",
+        "description",
+        "evidence_type"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_fingerprint": {
+          "title": "Asset Fingerprint",
+          "type": "string"
+        },
+        "asset_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "completed_at": {
+          "title": "Completed At",
+          "type": "string"
+        },
+        "contract_version": {
+          "pattern": "^\\d+\\.\\d+$",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "extraction_profile": {
+          "enum": [
+            "quick",
+            "standard",
+            "thorough"
+          ],
+          "title": "Extraction Profile",
+          "type": "string"
+        },
+        "frame_extractor": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Frame Extractor",
+          "type": "object"
+        },
+        "job_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Job Id",
+          "type": "string"
+        },
+        "media_probe": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Media Probe",
+          "type": "object"
+        },
+        "request_hash": {
+          "title": "Request Hash",
+          "type": "string"
+        },
+        "sampling_parameters": {
+          "additionalProperties": true,
+          "title": "Sampling Parameters",
+          "type": "object"
+        },
+        "sampling_strategy_version": {
+          "title": "Sampling Strategy Version",
+          "type": "string"
+        },
+        "schema_version": {
+          "pattern": "^\\d+\\.\\d+$",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "shot_detector": {
+          "additionalProperties": true,
+          "title": "Shot Detector",
+          "type": "object"
+        },
+        "stage_attempts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Stage Attempts",
+          "type": "object"
+        },
+        "started_at": {
+          "title": "Started At",
+          "type": "string"
+        },
+        "vision": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vision"
+        },
+        "warning_count": {
+          "minimum": 0,
+          "title": "Warning Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "job_id",
+        "asset_id",
+        "asset_fingerprint",
+        "contract_version",
+        "schema_version",
+        "extraction_profile",
+        "request_hash",
+        "sampling_strategy_version",
+        "sampling_parameters",
+        "media_probe",
+        "frame_extractor",
+        "shot_detector",
+        "started_at",
+        "completed_at",
+        "stage_attempts",
+        "warning_count"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Shot": {
+      "additionalProperties": false,
+      "properties": {
+        "analysis_status": {
+          "enum": [
+            "analyzed",
+            "failed",
+            "skipped",
+            "not_requested"
+          ],
+          "title": "Analysis Status",
+          "type": "string"
+        },
+        "boundary_kind": {
+          "enum": [
+            "asset_start",
+            "hard_cut",
+            "black_gap",
+            "none"
+          ],
+          "title": "Boundary Kind",
+          "type": "string"
+        },
+        "boundary_method": {
+          "enum": [
+            "initial_segment",
+            "whole_asset",
+            "ffmpeg_scene_score",
+            "ffmpeg_blackdetect",
+            "external"
+          ],
+          "title": "Boundary Method",
+          "type": "string"
+        },
+        "boundary_score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boundary Score"
+        },
+        "boundary_score_meaning": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boundary Score Meaning"
+        },
+        "boundary_uncertainty_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boundary Uncertainty Seconds"
+        },
+        "end_seconds": {
+          "minimum": 0.0,
+          "title": "End Seconds",
+          "type": "number"
+        },
+        "event_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Event Ids",
+          "type": "array"
+        },
+        "frame_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Frame Ids",
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Observation Ids",
+          "type": "array"
+        },
+        "segment_kind": {
+          "enum": [
+            "content",
+            "black"
+          ],
+          "title": "Segment Kind",
+          "type": "string"
+        },
+        "start_seconds": {
+          "minimum": 0.0,
+          "title": "Start Seconds",
+          "type": "number"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "required": [
+        "id",
+        "start_seconds",
+        "end_seconds",
+        "segment_kind",
+        "boundary_method",
+        "boundary_kind",
+        "analysis_status"
+      ],
+      "title": "Shot",
+      "type": "object"
+    },
+    "TimelineMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "interval_convention": {
+          "const": "[start,end)",
+          "default": "[start,end)",
+          "title": "Interval Convention",
+          "type": "string"
+        },
+        "origin": {
+          "const": "first_video_frame",
+          "default": "first_video_frame",
+          "title": "Origin",
+          "type": "string"
+        },
+        "precision_decimals": {
+          "default": 6,
+          "title": "Precision Decimals",
+          "type": "integer"
+        },
+        "source_time_base": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Time Base"
+        },
+        "start_time_offset_seconds": {
+          "default": 0.0,
+          "title": "Start Time Offset Seconds",
+          "type": "number"
+        },
+        "timeline_kind": {
+          "const": "source_media",
+          "default": "source_media",
+          "title": "Timeline Kind",
+          "type": "string"
+        },
+        "unit": {
+          "const": "seconds",
+          "default": "seconds",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "title": "TimelineMetadata",
+      "type": "object"
+    },
+    "WarningRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "related_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Related Ids",
+          "type": "array"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "stage": {
+          "title": "Stage",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "stage",
+        "severity"
+      ],
+      "title": "WarningRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "asset_fingerprint": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Asset Fingerprint"
+    },
+    "capabilities": {
+      "items": {
+        "$ref": "#/$defs/CapabilityReport"
+      },
+      "title": "Capabilities",
+      "type": "array"
+    },
+    "checksum_status": {
+      "enum": [
+        "verified",
+        "not_supplied"
+      ],
+      "title": "Checksum Status",
+      "type": "string"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/Event"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "frames": {
+      "items": {
+        "$ref": "#/$defs/FrameRecord"
+      },
+      "title": "Frames",
+      "type": "array"
+    },
+    "job": {
+      "additionalProperties": true,
+      "title": "Job",
+      "type": "object"
+    },
+    "media": {
+      "$ref": "#/$defs/MediaMetadata"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/Observation"
+      },
+      "title": "Observations",
+      "type": "array"
+    },
+    "outcome": {
+      "enum": [
+        "complete",
+        "partial"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "schema_version": {
+      "pattern": "^\\d+\\.\\d+$",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "shots": {
+      "items": {
+        "$ref": "#/$defs/Shot"
+      },
+      "title": "Shots",
+      "type": "array"
+    },
+    "timeline": {
+      "$ref": "#/$defs/TimelineMetadata"
+    },
+    "warnings": {
+      "items": {
+        "$ref": "#/$defs/WarningRecord"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "outcome",
+    "job",
+    "checksum_status",
+    "media",
+    "timeline",
+    "provenance"
+  ],
+  "title": "SceneIntelligenceDocument",
+  "type": "object"
+}

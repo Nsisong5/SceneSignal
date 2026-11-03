@@ -1,0 +1,12 @@
+{
+  "contract_version": "1.0",
+  "job_id": "gen-clip-0007",
+  "asset_id": "asset-0007",
+  "source_kind": "generated",
+  "asset_ref": {"scheme": "file", "uri": "clip_5s_landscape_audio.mp4", "checksum": null},
+  "extraction_profile": "standard",
+  "production_id": "production-001",
+  "scene_id": "scene-007",
+  "order_index": 7,
+  "source_prompt": "A hiker walking through a misty forest"
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "outcome": "partial",
+  "job": {
+    "job_id": "extract-001",
+    "asset_id": "asset-001",
+    "source_kind": "generated",
+    "extraction_profile": "standard",
+    "production_id": null,
+    "scene_id": null,
+    "order_index": null,
+    "correlation_id": null,
+    "rerun_of": null
+  },
+  "asset_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "checksum_status": "not_supplied",
+  "media": {
+    "duration_seconds": 5.0,
+    "container_duration_seconds": 5.0,
+    "width": 1280,
+    "height": 720,
+    "display_width": 1280,
+    "display_height": 720,
+    "rotation_degrees": 0,
+    "pixel_aspect_ratio": "1:1",
+    "has_video": true,
+    "has_audio": false,
+    "frame_rate": 24.0,
+    "frame_rate_mode": "constant",
+    "frame_count": 120,
+    "video_codec": "h264",
+    "audio_codec": null,
+    "container_format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "video_time_base": "1/12288",
+    "file_size_bytes": 123456
+  },
+  "timeline": {
+    "unit": "seconds",
+    "interval_convention": "[start,end)",
+    "precision_decimals": 6,
+    "timeline_kind": "source_media",
+    "origin": "first_video_frame",
+    "start_time_offset_seconds": 0.0,
+    "source_time_base": "1/12288"
+  },
+  "capabilities": [
+    {
+      "capability": "shot_detection",
+      "requested": true,
+      "status": "completed",
+      "analysis_mode": "deterministic",
+      "limitations": ["Detects hard cuts and black gaps only; gradual transitions are not detected."],
+      "error_code": null
+    },
+    {
+      "capability": "visual_observations",
+      "requested": true,
+      "status": "completed",
+      "analysis_mode": "still_frames",
+      "limitations": [],
+      "error_code": null
+    },
+    {
+      "capability": "temporal_events",
+      "requested": true,
+      "status": "partial",
+      "analysis_mode": "still_frames",
+      "limitations": ["Events are inferred from sampled stills; start and end times are not established."],
+      "error_code": null
+    },
+    {
+      "capability": "camera_analysis",
+      "requested": true,
+      "status": "partial",
+      "analysis_mode": "still_frames",
+      "limitations": ["Shot size and angle estimated from stills; camera movement cannot be established from stills."],
+      "error_code": null
+    },
+    {
+      "capability": "visible_text",
+      "requested": false,
+      "status": "not_requested",
+      "analysis_mode": null,
+      "limitations": [],
+      "error_code": null
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-001",
+      "start_seconds": 0.0,
+      "end_seconds": 5.0,
+      "segment_kind": "content",
+      "boundary_method": "initial_segment",
+      "boundary_kind": "asset_start",
+      "boundary_score": null,
+      "boundary_score_meaning": null,
+      "boundary_uncertainty_seconds": null,
+      "frame_ids": ["frame-001", "frame-002", "frame-003"],
+      "analysis_status": "analyzed",
+      "summary": "A person with a backpack walks through a misty forest.",
+      "observation_ids": ["obs-001"],
+      "event_ids": ["event-001"]
+    }
+  ],
+  "frames": [
+    {
+      "id": "frame-001",
+      "timestamp_seconds": 0.833333,
+      "requested_timestamp_seconds": 0.833333,
+      "timestamp_source": "decoded_pts",
+      "pts": 10240,
+      "time_base": "1/12288",
+      "frame_index": 20,
+      "shot_id": "shot-001",
+      "sampling_reason": "shot_bin",
+      "width": 1024,
+      "height": 576,
+      "artifact_ref": null
+    }
+  ],
+  "entities": [
+    {
+      "id": "entity-001",
+      "type": "person",
+      "label": "hiker",
+      "attributes": ["wearing a backpack"],
+      "identity_scope": "shot",
+      "tracking_method": "provider_local_grouping",
+      "identity_notes": null,
+      "shot_ids": ["shot-001"],
+      "first_observed_seconds": 0.833333,
+      "last_observed_seconds": 0.833333,
+      "observation_ids": ["obs-001"]
+    }
+  ],
+  "observations": [
+    {
+      "id": "obs-001",
+      "category": "object_presence",
+      "scope": "frame",
+      "timestamp_seconds": 0.833333,
+      "start_seconds": null,
+      "end_seconds": null,
+      "shot_id": "shot-001",
+      "description": "A person wearing a backpack is visible among trees.",
+      "value": null,
+      "entity_ids": ["entity-001"],
+      "evidence_frame_ids": ["frame-001"],
+      "evidence_type": "direct_observation",
+      "confidence": null,
+      "confidence_source": null,
+      "limitations": []
+    }
+  ],
+  "events": [
+    {
+      "id": "event-001",
+      "type": "movement",
+      "description": "Person walking through forest.",
+      "shot_id": "shot-001",
+      "entity_ids": ["entity-001"],
+      "evidence_observation_ids": ["obs-001"],
+      "evidence_span": {
+        "first_seconds": 0.833333,
+        "last_seconds": 0.833333
+      },
+      "start_seconds": null,
+      "end_seconds": null,
+      "temporal_precision": "single_sample_only",
+      "evidence_type": "inference",
+      "confidence": null,
+      "confidence_source": null,
+      "limitations": []
+    }
+  ],
+  "provenance": {
+    "job_id": "extract-001",
+    "asset_id": "asset-001",
+    "asset_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "contract_version": "1.0",
+    "schema_version": "1.0",
+    "extraction_profile": "standard",
+    "request_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "sampling_strategy_version": "1.0",
+    "sampling_parameters": {},
+    "media_probe": {"name": "ffprobe", "version": "6.0"},
+    "frame_extractor": {"name": "ffmpeg", "version": "6.0"},
+    "shot_detector": {"name": "ffmpeg_scene", "version": "1.0", "parameters": {}},
+    "vision": {"provider": "fake", "model": "fake", "adapter_version": "1.0", "analysis_mode": "still_frames"},
+    "started_at": "2026-10-12T00:00:00Z",
+    "completed_at": "2026-10-12T00:00:01Z",
+    "stage_attempts": {"inspection": 1},
+    "warning_count": 0
+  },
+  "warnings": []
+}
